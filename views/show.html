@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<div style="padding: 20px;">
+		<h1> {{ artical.title }}</h1>
+		<h2>----------作者：{{ artical.author }}</h2>
+		{{ artical.content | safe }}
+	</div>
+	<div style="width: 90%;height: 100px;margin: 0 auto 5% auto;">
+		<form action="show" method="post">
+    		<label for="exampleInputEmail1">发表评论</label>
+			<textarea name="content" id="comment" class="form-control" rows="3"></textarea>
+			<button type="submit" class="btn btn-default" style="float: right;">提交</button>
+		</form>
+	</div>
+		{% for com in comment %}
+			<ul>
+				<li>{{ com.author }}:   {{ com.content }}</li>
+			</ul>
+		{% endfor%}
+	<script>
+		
+	</script>
+{% endblock %}

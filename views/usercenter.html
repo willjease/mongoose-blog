@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div  class="col-md-4">
+					<h1> 用户中心 </h1>
+			<p> 欢迎 {{ username }}</p>
+			<div style="margin-left: 20px;border: 1px solid #000;width: 50px;height: 50px;border-radius: 100%;">
+				<img src="{{ user.avatar }}" alt="" style="width: 50px;height: 50px;border-radius: 100%;border: 1px solid #000;">
+			</div>
+			<form action="/user" method="post" enctype="multipart/form-data" id="a" style="display: none;">
+				<div class="form-group">
+			    	<input type="file" name="image1" placeholder="Username">
+			    </div>
+			 	<button type="submit">更换</button>
+			</form>
+			<a class="btn btn-primary navbar-btn" style="margin-left: 10px;" id="btn">更换头像</a>
+		</div>
+		<div class="col-md-8">
+			<div>
+				{% for show in data %}
+					<a href='{{ "/show/"+ show._id }}'>文章：{{ show.title }}</a>
+					<br>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	window.onload = function(){
+		var oBtn = document.getElementById("btn");
+		var oA = document.getElementById("a");
+		oBtn.onclick = function(){
+			oA.style.display = "block";
+		}
+	}
+	
+</script>
+
+{% endblock %}
